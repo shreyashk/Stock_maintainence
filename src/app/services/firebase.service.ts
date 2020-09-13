@@ -17,7 +17,7 @@ export class FirebaseService {
   }
 
   deleteItem(itemKey){
-    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).delete();
+     return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).delete();
   }
 
   getItems(){
@@ -29,7 +29,7 @@ export class FirebaseService {
       }
 
   searchItems(searchValue){
-    return this.db.collection('categories',ref => ref.where('ename', '>=', searchValue)
+    return this.db.collection('items',ref => ref.where('nameToSearch', '>=', searchValue)
       .where('nameToSearch', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
   }
