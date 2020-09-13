@@ -51,12 +51,10 @@ export class HomeComponent implements OnInit {
   }
 
   rangeChange(event){
-
     console.log("Selected value is", this.categoryValue);
     this.firebaseService.searchItemsByCategory( this.categoryValue)
     .subscribe(result =>{
-      this.category_filtered_items = result;
-      this.items = this.combineLists(result, this.name_filtered_items);
+      this.items = result;
     })
   }
 

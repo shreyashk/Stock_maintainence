@@ -35,20 +35,18 @@ export class FirebaseService {
   }
 
   searchItemsByCategory(value){
-    return this.db.collection('items',ref => ref.where('category', '>=', value)
-    .where('category', '<=', value + '\uf8ff'))
-    .snapshotChanges()
+    return this.db.collection('categories').doc(value).collection('V001').snapshotChanges();
   }
 
 
-  createItem(value){
-    return this.db.collection('categories').doc('Vegetables').collection('V001').add({
+  createItem(value, category){
+    return this.db.collection('categories').doc(category).collection('V001').add({
       ename: value.ename,
       hname: value.hname,
       unit: value.unit,
-      price: value.price,
-      mrp: value.mrp,
-      id: value.id,
+      price: Number(value.price),
+      mrp: Number(value.mrp),
+      id: Math.floor(Math.random() * Math.floor(9999999)),
       url: value.url,
     });
   }

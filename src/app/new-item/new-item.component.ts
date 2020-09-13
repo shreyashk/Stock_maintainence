@@ -46,23 +46,26 @@ export class NewItemComponent implements OnInit {
       unit: [''],
       price: [''],
       mrp: [''],
-      id: [''],
+      category: [''],
       url: [''],
     });
   }
 
   resetFields(){
     this.exampleForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
-      price: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
-      imageSource: new FormControl(''),
+      ename: new FormControl(''),
+      hname: new FormControl(''),
+      unit: new FormControl(''),
+      price: new FormControl(''),
+      mrp: new FormControl(''),
+      category: new FormControl(''),
+      url: new FormControl(''),
     });
   }
 
   onSubmit(value){
-    this.firebaseService.createItem(value)
+    console.log("Selected value is", value.category);
+    this.firebaseService.createItem(value, value.category)
     .then(
       res => {
         this.resetFields();
