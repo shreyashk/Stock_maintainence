@@ -12,7 +12,6 @@ import { FirebaseService } from '../services/firebase.service';
 export class NewItemComponent implements OnInit {
 
   exampleForm: FormGroup;
-  avatarLink: string = "https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg";
 
   validation_messages = {
     'name': [
@@ -42,11 +41,13 @@ export class NewItemComponent implements OnInit {
 
   createForm() {
     this.exampleForm = this.fb.group({
-      name: ['', Validators.required ],
-      quantity: ['', Validators.required],
-      price: ['',Validators.required],
-      category: ['', Validators.required],
-      imageSource: [''],
+      ename: [''],
+      hname: [''],
+      unit: [''],
+      price: [''],
+      mrp: [''],
+      id: [''],
+      url: [''],
     });
   }
 

@@ -9,24 +9,27 @@ export class FirebaseService {
   constructor(public db: AngularFirestore) {}
 
   getItem(itemKey){
-    return this.db.collection('items').doc(itemKey).snapshotChanges();
+    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).snapshotChanges();
   }
 
   updateItem(itemKey, value){
-    value.nameToSearch = value.name.toLowerCase();
-    return this.db.collection('items').doc(itemKey).set(value);
+    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).set(value);
   }
 
   deleteItem(itemKey){
-    return this.db.collection('items').doc(itemKey).delete();
+    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).delete();
   }
 
   getItems(){
-    return this.db.collection('items').snapshotChanges();
-  }
+    return  this.db.collection('categories').doc('Vegetables').collection('V001').snapshotChanges();
+   }
+
+    getAllItems(){
+      var fruits = this.db.collection('categories').doc('Fruits').collection('Farm Fresh').snapshotChanges();
+      }
 
   searchItems(searchValue){
-    return this.db.collection('items',ref => ref.where('nameToSearch', '>=', searchValue)
+    return this.db.collection('categories',ref => ref.where('ename', '>=', searchValue)
       .where('nameToSearch', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
   }
@@ -39,13 +42,14 @@ export class FirebaseService {
 
 
   createItem(value){
-    return this.db.collection('items').add({
-      name: value.name,
-      nameToSearch: value.name.toLowerCase(),
-      quantity: value.quantity,
+    return this.db.collection('categories').doc('Vegetables').collection('V001').add({
+      ename: value.ename,
+      hname: value.hname,
+      unit: value.unit,
       price: value.price,
-      category: value.category,
-      imageSource: value.imageSource
+      mrp: value.mrp,
+      id: value.id,
+      url: value.url,
     });
   }
 }

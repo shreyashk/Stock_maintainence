@@ -15,20 +15,20 @@ export class EditItemComponent implements OnInit {
   exampleForm: FormGroup;
   item: any;
 
-  validation_messages = {
-   'name': [
-     { type: 'required', message: 'Name is required.' }
-   ],
-   'category': [
-     { type: 'required', message: 'category is required.' }
-   ],
-   'quantity': [
-     { type: 'required', message: 'quantity is required.' },
-   ],
-   'price': [
-    { type: 'required', message: 'price is required.' },
-  ]
- };
+//   validation_messages = {
+//    'name': [
+//      { type: 'required', message: 'Name is required.' }
+//    ],
+//    'category': [
+//      { type: 'required', message: 'category is required.' }
+//    ],
+//    'quantity': [
+//      { type: 'required', message: 'quantity is required.' },
+//    ],
+//    'price': [
+//     { type: 'required', message: 'price is required.' },
+//   ]
+//  };
 
   constructor(
     public firebaseService: FirebaseService,
@@ -41,8 +41,10 @@ export class EditItemComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(routeData => {
       let data = routeData['data'];
+      console.log("data", data);
       if (data) {
         this.item = data.payload.data();
+        console.log("Data", this.item);
         this.item.id = data.payload.id;
         this.createForm();
       }
@@ -51,11 +53,13 @@ export class EditItemComponent implements OnInit {
 
   createForm() {
     this.exampleForm = this.fb.group({
-      name: [this.item.name, Validators.required],
-      quantity: [this.item.quantity, Validators.required],
-      price: [this.item.price, Validators.required],
-      category: [this.item.category, Validators.required],
-      imageSource: [this.item.imageSource],
+      ename: [this.item.ename],
+      hname: [this.item.hname],
+      unit: [this.item.unit],
+      price: [this.item.price],
+      mrp: [this.item.mrp],
+      id: [this.item.id],
+      url: [this.item.url],
     });
   }
 
