@@ -42,16 +42,16 @@ export class HomeComponent implements OnInit {
   }
 
   searchByName(){
-    let value = this.searchValue.toLowerCase();
-    this.firebaseService.searchItems(value)
+   // let value = this.searchValue.toLowerCase();
+    this.firebaseService.searchItems(this.searchValue)
     .subscribe(result => {
-      this.name_filtered_items = result;
-      this.items = this.combineLists(result, this.category_filtered_items);
+     // this.name_filtered_items = result;
+     // this.items = this.combineLists(result, this.category_filtered_items);
+     this.items = result;
     })
   }
 
   rangeChange(event){
-    console.log("Selected value is", this.categoryValue);
     this.firebaseService.searchItemsByCategory( this.categoryValue)
     .subscribe(result =>{
       this.items = result;
