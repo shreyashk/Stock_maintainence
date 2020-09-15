@@ -4,20 +4,34 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirebaseService {
 
-  constructor(public db: AngularFirestore) {}
+  docName = 'Vegetables';
 
+  constructor(public db: AngularFirestore) {
+  
+  }
+
+ 
   getItem(itemKey){
-    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).snapshotChanges();
+    return this.db.collection('categories').doc(this.docName).collection('V001').doc(itemKey).snapshotChanges();
   }
 
   updateItem(itemKey, value){
-    return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).set(value);
+    return this.db.collection('categories').doc(this.docName).collection('V001').doc(itemKey).set({
+      ename: value.ename,
+      hname: value.hname,
+      unit: value.unit,
+      price: Number(value.price),
+      mrp: Number(value.mrp),
+      id: Math.floor(Math.random() * Math.floor(9999999)),
+      url: value.url,
+    });;
   }
 
   deleteItem(itemKey){
-     return this.db.collection('categories').doc('Vegetables').collection('V001').doc(itemKey).delete();
+     return this.db.collection('categories').doc(this.docName).collection('V001').doc(itemKey).delete();
   }
 
   getItems(){
@@ -29,12 +43,13 @@ export class FirebaseService {
       }
 
   searchItems(searchValue){
-    return this.db.collection('items',ref => ref.where('nameToSearch', '>=', searchValue)
-      .where('nameToSearch', '<=', searchValue + '\uf8ff'))
+    return this.db.collection('categories').doc(this.docName).collection('V001',ref => ref.where('ename', '>=', searchValue)
+      .where('ename', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
   }
 
   searchItemsByCategory(value){
+    this.docName = value;
     return this.db.collection('categories').doc(value).collection('V001').snapshotChanges();
   }
 
