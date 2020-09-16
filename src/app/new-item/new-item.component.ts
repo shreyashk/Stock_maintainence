@@ -48,6 +48,7 @@ export class NewItemComponent implements OnInit {
       mrp: [''],
       category: [''],
       url: [''],
+      deal: ['false']
     });
   }
 
@@ -60,6 +61,7 @@ export class NewItemComponent implements OnInit {
       mrp: new FormControl(''),
       category: new FormControl(''),
       url: new FormControl(''),
+     // deal: new FormControl(''),
     });
   }
 
