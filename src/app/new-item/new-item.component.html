@@ -10,6 +10,16 @@
 
         <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
 
+          <div class="form-group">         
+              <a class="form-control">Category</a>         
+              <select name="Category" id="grocery" class="form-control"  formControlName="category">
+                <option>Vegetables</option>
+                <option>Fruits</option>
+                <option>Dairy</option>
+                <option>Grocery</option>
+              </select>    
+          </div>
+
           <div class="form-group">
             <mat-form-field class="input-style">
               <input matInput placeholder="Ename" class="form-control" formControlName="ename">
@@ -41,16 +51,12 @@
           </div>
 
           <div class="form-group">
-            <mat-form-field class="input-style">
-              <input matInput placeholder="Category">
-              <select name="Category" id="grocery" class="form-control"  formControlName="category">
-                <option>Vegetables</option>
-                <option>Fruits</option>
-                <option>Dairy</option>
-                <option>Other Grocery item</option>
-              </select>
-            </mat-form-field>
-          </div>
+            <a class="form-control">Deal of the Day</a>
+            <select name="deal" id="deal" class="form-control" formControlName="deal"> 
+              <option value="true">true</option> 
+              <option value="false" selected>false</option> 
+            </select>
+          </div> 
 
           <div class="form-group">
             <mat-form-field class="input-style">
