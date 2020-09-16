@@ -60,6 +60,7 @@ export class EditItemComponent implements OnInit {
       mrp: [this.item.mrp],
       id: [this.item.id],
       url: [this.item.url],
+      deal: [this.item.deal],
     });
   }
 
