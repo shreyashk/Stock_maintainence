@@ -27,6 +27,7 @@ export class FirebaseService {
       mrp: Number(value.mrp),
       id: Math.floor(Math.random() * Math.floor(9999999)),
       url: value.url,
+      deal: value.deal
     });;
   }
 
@@ -63,6 +64,7 @@ export class FirebaseService {
       mrp: Number(value.mrp),
       id: Math.floor(Math.random() * Math.floor(9999999)),
       url: value.url,
+      deal: value.deal
     });
   }
 }
